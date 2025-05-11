@@ -2,6 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { kv } from '@vercel/kv';
+import {generateText} from "ai";
+import {openai} from "@ai-sdk/openai";
 
 interface DocumentData {
   title: string;
@@ -18,21 +20,12 @@ export async function generateDocument(data: DocumentData): Promise<string> {
   try {
     const prompt = generatePromptFromData(data);
 
-    const response = await fetch('https://api-inference.huggingface.co/models/YOUR_MODEL_ID', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ inputs: prompt }),
-    });
+    const {text: llmResponse} = await generateText({
+      model: openai('gpt-4o'),
+      prompt: prompt,
+    })
 
-    if (!response.ok) {
-      throw new Error('Hugging Face API call failed');
-    }
-
-    const result = await response.json();
-    return result[0]?.generated_text || 'No content returned';
+    return llmResponse
   } catch (error) {
     console.error('Error generating document:', error);
     throw new Error('Failed to generate document');
