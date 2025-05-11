@@ -17,7 +17,6 @@ interface DocumentData {
 }
 
 export default function DocumentGenerator() {
-  const [activeTab, setActiveTab] = useState<string>("manual")
   const [documentData, setDocumentData] = useState<DocumentData>({
     title: "",
     categories: {
@@ -42,7 +41,6 @@ export default function DocumentGenerator() {
 
   const handleTemplateSelect = (template: DocumentData) => {
     setDocumentData(template)
-    setActiveTab("manual") // Switch to manual tab to allow editing
   }
 
   const handleGenerateDocument = async () => {
@@ -86,19 +84,8 @@ export default function DocumentGenerator() {
 
   return (
     <div className="space-y-8">
-      <Tabs defaultValue="manual" value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="manual">Manual Input</TabsTrigger>
-          <TabsTrigger value="template">Use Template</TabsTrigger>
-        </TabsList>
-        <TabsContent value="manual" className="space-y-4 pt-4">
-          <ManualInputForm data={documentData} onChange={handleManualInputChange} />
-        </TabsContent>
-        <TabsContent value="template" className="space-y-4 pt-4">
-          <TemplateSelector onSelect={handleTemplateSelect} />
-        </TabsContent>
-      </Tabs>
-
+      <TemplateSelector onSelect={handleTemplateSelect} />
+      <ManualInputForm data={documentData} onChange={handleManualInputChange} />
       <div className="flex justify-end">
         <Button onClick={handleGenerateDocument} disabled={isGenerating} size="lg">
           {isGenerating ? (
