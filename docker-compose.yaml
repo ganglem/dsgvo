@@ -1,0 +1,21 @@
+services:
+  app:
+    container_name: ganglem-dsgvo-projekt
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ganglem-dsgvo-projekt:latest
+    networks:
+      - web
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ganglem-dsgvo-projekt.rule=Host(`dsgvo.mertendieckmann.de`)"
+      - "traefik.http.routers.ganglem-dsgvo-projekt.entrypoints=websecure"
+      - "traefik.http.routers.ganglem-dsgvo-projekt.tls=true"
+      - "traefik.http.routers.ganglem-dsgvo-projekt.tls.certresolver=lets-encrypt"
+      - "traefik.docker.network=web"
+
+networks:
+  web:
+    external: true
