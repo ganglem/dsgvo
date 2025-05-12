@@ -55,79 +55,46 @@ export async function fetchTemplates() {
 
 // Build a custom prompt string from user input
 function generatePromptFromData(data: DocumentData): string {
-    const {title, categories, additionalInfo} = data;
+    const { title, categories, additionalInfo } = data;
 
-    const categoryDetails = Object.entries(categories)
-        .map(([key, value]) => `${key}: ${value}`)
+    const categoryLabels: Record<string, string> = {
+        dataCollection: 'Data Collection',
+        dataProcessing: 'Data Processing',
+        dataRetention: 'Data Retention',
+        dataSharing: 'Data Sharing',
+        userRights: 'User Rights',
+        security: 'Security Measures',
+        cookies: 'Cookies and Tracking Technologies',
+        contactInfo: 'Contact Information',
+    };
+
+    const selectedCategories = Object.entries(categories)
+        .filter(([_, isSelected]) => isSelected)
+        .map(([key]) => `- ${categoryLabels[key]}`)
         .join('\n');
 
     const prompt = `
-    Generate a detailed, professional GDPR privacy policy.
+    You are an expert in data protection compliance. Generate a professional, structured Records of Processing Activities (ROPA) document in full compliance with the EU General Data Protection Regulation (GDPR).
+    
+    This ROPA document must be suitable for official regulatory review and written in formal business language.
+    
+    Document Title:
+    ${title}
+    
+    Included GDPR Compliance Categories:
+    ${selectedCategories || 'None specified. Apply general GDPR processing practices.'}
+    
+    Additional Information and Special Instructions:
+    ${additionalInfo || 'No additional instructions provided. Use standard GDPR best practices.'}
+    
+    Instructions:
+    - Begin with an executive summary.
+    - Clearly structure the document with headings for each included category.
+    - For each category, describe processing purposes, legal basis, data subjects involved, data processors/controllers, retention periods, and safeguards.
+    - Maintain a professional, legally appropriate tone throughout.
+    
+    The output should be suitable for use by a Data Protection Officer (DPO) or legal counsel.
+        `.trim();
 
-    Title: ${title}
-
-    Section requirements:
-    ${categoryDetails}
-
-    Additional information:
-    ${additionalInfo || 'N/A'}
-
-    The document should be clear, structured, and in formal business language.
-  `.trim();
-
-    return prompt;
-}
-
-// Mock data if needed in the future (currently unused)
-function getMockTemplates(): Template[] {
-    return [
-        {
-            id: 'template_1',
-            title: 'Standard Privacy Policy',
-            categories: {
-                dataCollection: true,
-                dataProcessing: true,
-                dataRetention: true,
-                dataSharing: true,
-                userRights: true,
-                security: true,
-                cookies: true,
-                contactInfo: true,
-            },
-            additionalInfo:
-                'This is a comprehensive privacy policy template suitable for most businesses.',
-        },
-        {
-            id: 'template_2',
-            title: 'E-commerce Privacy Policy',
-            categories: {
-                dataCollection: true,
-                dataProcessing: true,
-                dataRetention: true,
-                dataSharing: true,
-                userRights: true,
-                security: true,
-                cookies: true,
-                contactInfo: true,
-            },
-            additionalInfo:
-                'Specifically designed for e-commerce businesses that collect payment information and shipping details.',
-        },
-        {
-            id: 'template_3',
-            title: 'Minimal Cookie Policy',
-            categories: {
-                dataCollection: false,
-                dataProcessing: false,
-                dataRetention: false,
-                dataSharing: false,
-                userRights: true,
-                security: false,
-                cookies: true,
-                contactInfo: true,
-            },
-            additionalInfo:
-                'A simple cookie policy that covers the basics of cookie usage on your website.',
-        },
-    ];
+        return prompt;
 }
