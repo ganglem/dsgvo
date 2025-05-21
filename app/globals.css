@@ -17,7 +17,6 @@ body::before {
   pointer-events: none;
 }
 
-
 @layer base {
   :root {
     --background: 240 100% 97%;
@@ -26,20 +25,20 @@ body::before {
     --card-foreground: 240 20% 10%;
     --popover: 240 100% 100% / 0.05;
     --popover-foreground: 240 20% 10%;
-    --primary: 260 100% 75%;
+    --primary: 260 100% 54%;
     --primary-foreground: 0 0% 100%;
     --secondary: 260 50% 90%;
     --secondary-foreground: 260 20% 20%;
-    --muted: 240 20% 90%;
-    --muted-foreground: 240 10% 40%;
+    --muted: 240 10% 65%;
+    --muted-foreground: 240 10% 30%;
     --accent: 260 40% 85%;
     --accent-foreground: 240 20% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 20% 85%;
-    --input: 240 20% 85%;
-    --ring: 260 100% 75%;
-    --chart-1: 260 70% 65%;
+    --border: 240 10% 60%;
+    --input: 240 10% 60%;
+    --ring: 260 100% 54%;
+    --chart-1: 260 100% 54%;
     --chart-2: 230 60% 55%;
     --chart-3: 200 70% 60%;
     --chart-4: 280 60% 70%;
@@ -47,13 +46,15 @@ body::before {
     --radius: 0.5rem;
     --sidebar-background: 240 100% 97%;
     --sidebar-foreground: 240 20% 10%;
-    --sidebar-primary: 260 100% 75%;
+    --sidebar-primary: 260 100% 54%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 50% 95%;
     --sidebar-accent-foreground: 240 20% 10%;
-    --sidebar-border: 240 20% 85%;
-    --sidebar-ring: 260 100% 75%;
+    --sidebar-border: 240 10% 60%;
+    --sidebar-ring: 260 100% 54%;
   }
+
+
 
   .dark {
     --background: 240 30% 10%;
@@ -62,7 +63,7 @@ body::before {
     --card-foreground: 240 20% 90%;
     --popover: 240 20% 20% / 0.1;
     --popover-foreground: 240 20% 90%;
-    --primary: 260 100% 75%;
+    --primary: 260 70% 60%;
     --primary-foreground: 0 0% 0%;
     --secondary: 240 20% 20%;
     --secondary-foreground: 240 20% 90%;
@@ -74,21 +75,22 @@ body::before {
     --destructive-foreground: 0 0% 98%;
     --border: 240 20% 30%;
     --input: 240 20% 30%;
-    --ring: 260 100% 75%;
-    --chart-1: 260 70% 65%;
+    --ring: 260 70% 60%;
+    --chart-1: 260 70% 60%;
     --chart-2: 230 60% 55%;
     --chart-3: 200 70% 60%;
     --chart-4: 280 60% 70%;
     --chart-5: 300 75% 68%;
     --sidebar-background: 240 30% 10%;
     --sidebar-foreground: 240 20% 90%;
-    --sidebar-primary: 260 100% 75%;
+    --sidebar-primary: 260 70% 60%;
     --sidebar-primary-foreground: 0 0% 10%;
     --sidebar-accent: 240 20% 20%;
     --sidebar-accent-foreground: 240 20% 90%;
     --sidebar-border: 240 20% 30%;
-    --sidebar-ring: 260 100% 75%;
+    --sidebar-ring: 260 70% 60%;
   }
+
 
   * {
     @apply border-border;

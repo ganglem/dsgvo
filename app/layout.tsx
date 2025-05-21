@@ -36,8 +36,8 @@ export default function RootLayout({
                 <main className="flex-grow">{children}</main>
 
                 {/* FOOTER */}
-                <footer className="p-4 text-center text-sm border-t">
-                    <Link href="/impressum" className="text-blue-500 hover:underline">
+                <footer className="p-4 text-center text-sm">
+                    <Link href="/impressum" className="text-white hover:underline">
                         Impressum
                     </Link>
                 </footer>
