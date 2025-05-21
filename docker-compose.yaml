@@ -18,7 +18,7 @@ services:
       - traefik.http.routers.ganglem-dsgvo-projekt.tls.certresolver=lets-encrypt
       - traefik.docker.network=web
       - traefik.http.routers.ganglem-dsgvo-projekt.middlewares=ganglem-dsgvo-auth
-      - traefik.http.middlewares.ganglem-dsgvo-auth.basicauth.users=emilija:$2y$05$tDhbeNaYAP68YA2UTeAvZuiPF2cyQf0VG2UDA8vpTTck7r0TPVdhW,magda:$2y$05$1//kBHPKl/.Lt/plc7i/GeJZ5YoQ0reTuGolUXcXZ2Cr3mtYXbDgG,shmolbean:$2y$05$Lxtapqyq58mqpT1WgzsLOOEu74PxnRdEjvTlj4zxJ621xZiccXS.q
+      - traefik.http.middlewares.ganglem-dsgvo-auth.basicauth.users=emilija:$$2y$$05$$tDhbeNaYAP68YA2UTeAvZuiPF2cyQf0VG2UDA8vpTTck7r0TPVdhW,magda:$$2y$$05$$1//kBHPKl/.Lt/plc7i/GeJZ5YoQ0reTuGolUXcXZ2Cr3mtYXbDgG,shmolbean:$$2y$$05$$Lxtapqyq58mqpT1WgzsLOOEu74PxnRdEjvTlj4zxJ621xZiccXS.q
 
 networks:
   web:
