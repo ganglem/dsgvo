@@ -6,12 +6,6 @@ import { ThemeToggle } from "@/components/ThemeToggle"
 export default function Home() {
     return (
         <main className="container mx-auto py-10 px-4 md:px-6 relative">
-            {/* Toggle in top right */}
-            <div className="absolute top-4 right-4">
-                <ThemeToggle />
-            </div>
-
-            <h1 className="text-3xl font-bold mb-6">ROPA Generator</h1>
             <p className="text-muted-foreground mb-8">
                 Create GDPR-compliant documents for your company by either entering custom information or selecting from
                 predefined templates.
