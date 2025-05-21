@@ -11,7 +11,7 @@ services:
       - web
     restart: unless-stopped
     labels:
-      - traefik.enable=true"
+      - traefik.enable=true
       - traefik.http.routers.ganglem-dsgvo-projekt.rule=Host(`ganglem.space`)
       - traefik.http.routers.ganglem-dsgvo-projekt.entrypoints=websecure
       - traefik.http.routers.ganglem-dsgvo-projekt.tls=true
