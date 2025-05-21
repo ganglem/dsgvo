@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: ganglem-dsgvo-projekt:latest
+    env_file:
+      - .env
     networks:
       - web
     restart: unless-stopped
