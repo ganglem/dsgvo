@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 export default function Home() {
   return (
     <main className="container mx-auto py-10 px-4 md:px-6">
-      <h1 className="text-3xl font-bold mb-6">GDPR Document Generator</h1>
+      <h1 className="text-3xl font-bold mb-6">ROPA Generator</h1>
       <p className="text-muted-foreground mb-8">
         Create GDPR-compliant documents for your company by either entering custom information or selecting from
         predefined templates.

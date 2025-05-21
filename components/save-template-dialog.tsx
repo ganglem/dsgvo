@@ -15,16 +15,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Save } from "lucide-react"
+import {DocumentData} from "@/components/document-generator";
 
-interface SaveTemplateDialogProps {
-  documentData: {
-    title: string
-    categories: Record<string, boolean>
-    additionalInfo: string
-  }
-}
 
-export default function SaveTemplateDialog({ documentData }: SaveTemplateDialogProps) {
+export default function SaveTemplateDialog({ documentData }: { documentData: DocumentData }) {
   const [open, setOpen] = useState(false)
   const [templateTitle, setTemplateTitle] = useState(documentData.title)
   const [isSaving, setIsSaving] = useState(false)

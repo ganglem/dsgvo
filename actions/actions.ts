@@ -3,19 +3,13 @@
 import {generateText} from 'ai';
 import {openai} from '@ai-sdk/openai';
 import {MongoClient} from "mongodb";
+import {Category, DocumentData} from "@/models/DocumentData";
+import {Template} from "@/models/Templates";
+
+import data from "@/data/mock.json";
 
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 const dbName = process.env.DB_NAME;
-
-interface DocumentData {
-    title: string;
-    categories: Record<string, boolean>;
-    additionalInfo: string;
-}
-
-interface Template extends DocumentData {
-    id: string;
-}
 
 // Generate a document using Hugging Face API
 export async function generateDocument(data: DocumentData): Promise<string> {
@@ -34,8 +28,13 @@ export async function generateDocument(data: DocumentData): Promise<string> {
     }
 }
 
+export async function fetchMockTemplates(): Promise<Template[]> {
+    return data as unknown as Template[];
+}
+
+
 // Fetch templates from MongoDB instead of Vercel KV
-export async function fetchTemplates() {
+export async function fetchDBTemplates() {
     const client = new MongoClient(mongoUri);
     let templates = [];
     try {
@@ -54,23 +53,11 @@ export async function fetchTemplates() {
 }
 
 // Build a custom prompt string from user input
-function generatePromptFromData(data: DocumentData): string {
-    const { title, categories, additionalInfo } = data;
+function generatePromptFromData(documentData: DocumentData): string {
 
-    const categoryLabels: Record<string, string> = {
-        dataCollection: 'Data Collection',
-        dataProcessing: 'Data Processing',
-        dataRetention: 'Data Retention',
-        dataSharing: 'Data Sharing',
-        userRights: 'User Rights',
-        security: 'Security Measures',
-        cookies: 'Cookies and Tracking Technologies',
-        contactInfo: 'Contact Information',
-    };
-
-    const selectedCategories = Object.entries(categories)
+    const selectedCategories = Object.entries(documentData.categories)
         .filter(([_, isSelected]) => isSelected)
-        .map(([key]) => `- ${categoryLabels[key]}`)
+        .map(([key]) => `- ${Category[key as keyof typeof Category]}`)
         .join('\n');
 
     const prompt = `
@@ -79,13 +66,13 @@ function generatePromptFromData(data: DocumentData): string {
     This ROPA document must be suitable for official regulatory review and written in formal business language.
     
     Document Title:
-    ${title}
+    ${documentData.title || 'No title provided. Use standard GDPR best practices.'}
     
     Included GDPR Compliance Categories:
     ${selectedCategories || 'None specified. Apply general GDPR processing practices.'}
     
     Additional Information and Special Instructions:
-    ${additionalInfo || 'No additional instructions provided. Use standard GDPR best practices.'}
+    ${documentData.additionalInfo || 'No additional instructions provided. Use standard GDPR best practices.'}
     
     Instructions:
     - Begin with an executive summary.
@@ -94,6 +81,7 @@ function generatePromptFromData(data: DocumentData): string {
     - Maintain a professional, legally appropriate tone throughout.
     
     The output should be suitable for use by a Data Protection Officer (DPO) or legal counsel.
+    The output should be in .md style.
         `.trim();
 
         return prompt;

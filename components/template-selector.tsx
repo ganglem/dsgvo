@@ -4,25 +4,20 @@ import { useState, useEffect } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { fetchTemplates } from "@/app/actions"
+import { fetchMockTemplates } from "@/actions/actions"
 import { Skeleton } from "@/components/ui/skeleton"
+import {Category} from "@/models/DocumentData";
+import {Template} from "@/models/Templates";
 
-interface Template {
-  id: string
-  title: string
-  categories: Record<string, boolean>
-  additionalInfo: string
-}
 
-interface TemplateSelectorProps {
+export default function TemplateSelector({ onSelect }: {
   onSelect: (template: {
     title: string
-    categories: Record<string, boolean>
+    categories: Record<Category, boolean>;
     additionalInfo: string
   }) => void
-}
+}) {
 
-export default function TemplateSelector({ onSelect }: TemplateSelectorProps) {
   const [templates, setTemplates] = useState<Template[]>([])
   const [loading, setLoading] = useState(true)
   const { toast } = useToast()
@@ -30,7 +25,8 @@ export default function TemplateSelector({ onSelect }: TemplateSelectorProps) {
   useEffect(() => {
     const loadTemplates = async () => {
       try {
-        const data = await fetchTemplates()
+        const data = await fetchMockTemplates()
+        console.log(data)
         setTemplates(data)
       } catch (error) {
         toast({

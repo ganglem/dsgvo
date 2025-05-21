@@ -2,33 +2,22 @@
 
 import { useState } from "react"
 import { useToast } from "@/hooks/use-toast"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import ManualInputForm from "@/components/manual-input-form"
 import TemplateSelector from "@/components/template-selector"
 import DocumentPreview from "@/components/document-preview"
-import { generateDocument } from "@/app/actions"
+import { generateDocument } from "@/actions/actions"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
+import {Category, DocumentData} from "@/models/DocumentData";
 
-interface DocumentData {
-  title: string
-  categories: Record<string, boolean>
-  additionalInfo: string
-}
 
 export default function DocumentGenerator() {
   const [documentData, setDocumentData] = useState<DocumentData>({
     title: "",
-    categories: {
-      dataCollection: false,
-      dataProcessing: false,
-      dataRetention: false,
-      dataSharing: false,
-      userRights: false,
-      security: false,
-      cookies: false,
-      contactInfo: false,
-    },
+    categories: Object.values(Category).reduce(
+        (acc, category) => ({ ...acc, [category]: false }),
+        {} as Record<Category, boolean>
+    ),
     additionalInfo: "",
   })
   const [generatedDocument, setGeneratedDocument] = useState<string>("")
@@ -99,7 +88,7 @@ export default function DocumentGenerator() {
         </Button>
       </div>
 
-      {generatedDocument && <DocumentPreview document={generatedDocument} />}
+      {generatedDocument && <DocumentPreview generatedDocument={generatedDocument} documentData={documentData} />}
     </div>
   )
 }
