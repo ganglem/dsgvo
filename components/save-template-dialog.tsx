@@ -15,7 +15,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { Save } from "lucide-react"
-import {DocumentData} from "@/components/document-generator";
+import {DocumentData} from "@/models/DocumentData";
+
 
 
 export default function SaveTemplateDialog({ documentData }: { documentData: DocumentData }) {

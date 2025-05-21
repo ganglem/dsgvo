@@ -84,5 +84,5 @@ function generatePromptFromData(documentData: DocumentData): string {
     The output should be in .md style.
         `.trim();
 
-        return prompt;
+    return prompt;
 }
