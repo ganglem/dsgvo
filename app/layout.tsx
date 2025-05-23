@@ -23,8 +23,8 @@ export default function RootLayout({
                     <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                         {/* Left: Logo + Title */}
                         <Link href="/" className="flex items-center space-x-2">
-                            <img src="/star.svg" alt="Logo" className="h-10 w-10" />
-                            <h1 className="text-5xl font-bold">ROPA Generator</h1>
+                            <img src="/star.svg" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
+                            <h1 className="text-2xl md:text-5xl font-bold">ROPA Generator</h1>
                         </Link>
 
                         {/* Right: Theme Toggle */}
