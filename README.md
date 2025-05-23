@@ -7,6 +7,11 @@ This is a Next.js project and is deployed on [ganglem.space](https://ganglem.spa
 If you need to install the dependencies, please use 
 
 ```bash
+npx pnpm install
+```
+or
+
+```bash
 npm install --force
 ```
 
