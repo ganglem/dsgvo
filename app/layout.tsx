@@ -24,7 +24,7 @@ export default function RootLayout({
                         {/* Left: Logo + Title */}
                         <Link href="/" className="flex items-center space-x-2">
                             <img src="/star.svg" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
-                            <h1 className="text-2xl md:text-5xl font-bold">ROPA Generator</h1>
+                            <h1 className="text-2xl md:text-5xl font-bold">shmollest ROPA Generator</h1>
                         </Link>
 
                         {/* Right: Theme Toggle */}
