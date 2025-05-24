@@ -1,10 +1,7 @@
 services:
   app:
     container_name: ganglem-ropagen
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: ganglem-ropagen:latest
+    image: ganglem/ropagen:latest
     env_file:
       - .env
     networks:
