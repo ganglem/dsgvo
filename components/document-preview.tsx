@@ -6,10 +6,13 @@ import { Download } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import {DocumentData} from "@/models/DocumentData";
 import { marked } from 'marked';
+import { useState } from "react"
 
 
 export default function DocumentPreview( {generatedDocument, documentData} : {generatedDocument: string, documentData: DocumentData}) {
   const { toast } = useToast()
+
+  const [editableDoc, setEditableDoc] = useState(generatedDocument)
 
     const handleDownload = () => {
     try {
@@ -35,10 +38,13 @@ export default function DocumentPreview( {generatedDocument, documentData} : {ge
     <Card className="mt-8">
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Generated Document</CardTitle>
-
       </CardHeader>
       <CardContent>
-        <div className="bg-muted p-4 rounded-md whitespace-pre-wrap max-h-[500px] overflow-y-auto">{generatedDocument}</div>
+        <textarea
+          className="bg-muted p-4 rounded-md w-full max-h-[500px] min-h-[200px] overflow-y-auto resize-y"
+          defaultValue={editableDoc}
+          onChange={e => setEditableDoc(e.target.value)}
+        />
       </CardContent>
     </Card>
   )
