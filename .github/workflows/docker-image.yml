@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: emilija/ropagen:latest
+          tags: ganglem/ropagen:latest
