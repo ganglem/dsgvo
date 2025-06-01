@@ -1,0 +1,47 @@
+[
+  {
+    "id": "template_1",
+    "title": "Standard Privacy Policy",
+    "categories": {
+      "dataCollection": true,
+      "dataProcessing": true,
+      "dataRetention": true,
+      "dataSharing": true,
+      "userRights": true,
+      "security": true,
+      "cookies": true,
+      "contactInfo": true
+    },
+    "additionalInfo": "This is a comprehensive privacy policy template suitable for most businesses."
+  },
+  {
+    "id": "template_2",
+    "title": "E-commerce Privacy Policy",
+    "categories": {
+      "dataCollection": true,
+      "dataProcessing": true,
+      "dataRetention": true,
+      "dataSharing": true,
+      "userRights": true,
+      "security": true,
+      "cookies": true,
+      "contactInfo": true
+    },
+    "additionalInfo": "Specifically designed for e-commerce businesses that collect payment information and shipping details."
+  },
+  {
+    "id": "template_3",
+    "title": "Minimal Cookie Policy",
+    "categories": {
+      "dataCollection": false,
+      "dataProcessing": false,
+      "dataRetention": false,
+      "dataSharing": false,
+      "userRights": true,
+      "security": false,
+      "cookies": true,
+      "contactInfo": true
+    },
+    "additionalInfo": "A simple cookie policy that covers the basics of cookie usage on your website."
+  }
+]

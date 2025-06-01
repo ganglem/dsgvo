@@ -1,0 +1,23 @@
+services:
+  app:
+    container_name: ganglem-ropagen
+    image: ganglem/ropagen:latest
+    env_file:
+      - .env
+    networks:
+      - web
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ganglem-ropagen.rule=Host(`ganglem.space`)
+      - traefik.http.routers.ganglem-ropagen.entrypoints=websecure
+      - traefik.http.routers.ganglem-ropagen.tls=true
+      - traefik.http.routers.ganglem-ropagen.tls.certresolver=lets-encrypt
+      - traefik.docker.network=web
+      - traefik.http.routers.ganglem-ropagen.middlewares=ganglem-ropagen-auth
+      - traefik.http.middlewares.ganglem-ropagen-auth.basicauth.users=emilija:$$2y$$05$$tDhbeNaYAP68YA2UTeAvZuiPF2cyQf0VG2UDA8vpTTck7r0TPVdhW,magda:$$2y$$05$$1//kBHPKl/.Lt/plc7i/GeJZ5YoQ0reTuGolUXcXZ2Cr3mtYXbDgG,shmolbean:$$2y$$05$$Lxtapqyq58mqpT1WgzsLOOEu74PxnRdEjvTlj4zxJ621xZiccXS.q
+      - com.centurylinklabs.watchtower.enable=true
+      
+networks:
+  web:
+    external: true
