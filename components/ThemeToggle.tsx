@@ -20,7 +20,7 @@ export function ThemeToggle() {
             <Switch
                 checked={isDark}
                 onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
-                className="data-[state=checked]:bg-primary transition"
+                className="data-[state=checked]:bg-accent transition"
             />
             <span className="text-xl">🌙</span>
         </div>

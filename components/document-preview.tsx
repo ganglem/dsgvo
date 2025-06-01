@@ -1,12 +1,12 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Download } from "lucide-react"
+
 import { useToast } from "@/hooks/use-toast"
 import {DocumentData} from "@/models/DocumentData";
 import { marked } from 'marked';
 import { useState } from "react"
+import {Textarea} from "@/components/ui/textarea";
 
 
 export default function DocumentPreview( {generatedDocument, documentData} : {generatedDocument: string, documentData: DocumentData}) {
@@ -40,8 +40,8 @@ export default function DocumentPreview( {generatedDocument, documentData} : {ge
         <CardTitle>Generated Document</CardTitle>
       </CardHeader>
       <CardContent>
-        <textarea
-          className="bg-muted p-4 rounded-md w-full max-h-[500px] min-h-[200px] overflow-y-auto resize-y"
+        <Textarea
+          className="max-h-[500px] min-h-[200px]"
           defaultValue={editableDoc}
           onChange={e => setEditableDoc(e.target.value)}
         />

@@ -11,23 +11,20 @@ export const metadata: Metadata = {
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
-    children: React.ReactNode
+    children: React.ReactNode;
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-        <body>
+        <body className="bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="min-h-screen flex flex-col">
                 {/* HEADER */}
                 <header className="py-10">
                     <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-                        {/* Left: Logo + Title */}
                         <Link href="/" className="flex items-center space-x-2">
                             <img src="/star.svg" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
                             <h1 className="text-2xl md:text-5xl font-bold">shmollest ROPA Generator</h1>
                         </Link>
-
-                        {/* Right: Theme Toggle */}
                         <ThemeToggle />
                     </div>
                 </header>
@@ -37,7 +34,7 @@ export default function RootLayout({
 
                 {/* FOOTER */}
                 <footer className="p-4 text-center text-sm">
-                    <Link href="/impressum" className="text-white hover:underline">
+                    <Link href="/impressum" className="text-primary-foreground hover:opacity-50">
                         Impressum
                     </Link>
                 </footer>
@@ -45,5 +42,5 @@ export default function RootLayout({
         </ThemeProvider>
         </body>
         </html>
-    )
+    );
 }
