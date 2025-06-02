@@ -5,6 +5,8 @@
  </p>
 </p>
 
+Software project at Ulm University at the DBIS institute for generating GDPR-compliant ROPA documents for companies using LLMs.
+
 🪐 This is a Next.js project and is deployed on [ganglem.space](https://ganglem.space)
 
 
