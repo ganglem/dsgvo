@@ -4,13 +4,20 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Themetoggle() {
-    const [isDark, setIsDark] = useState(true);
+    const [isDark, setIsDark] = useState(() => {
+        if (typeof window !== "undefined") {
+            const stored = localStorage.getItem("theme");
+            return stored ? stored === "dark" : true;
+        }
+        return true;
+    });
 
     const circleSize = 24; // Fixed circle diameter
     const toggleX = 36; // Fixed slide distance
 
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
+        localStorage.setItem("theme", isDark ? "dark" : "light");
     }, [isDark]);
 
     return (
